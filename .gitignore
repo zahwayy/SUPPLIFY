@@ -1,5 +1,35 @@
-# Object file
+# Object files
 *.o
 
 # Ada Library Information
 *.ali
+
+# Dependencies
+/node_modules/
+
+# Next.js
+/.next/
+/out/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build output
+/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local storage and uploads
+/storage/
+
+# Temporary repository clone
+/temp-git/
+
+# OS files
+.DS_Store
+Thumbs.db
