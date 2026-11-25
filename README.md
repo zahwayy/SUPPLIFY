@@ -3,7 +3,7 @@
   <h1>Supplify</h1>
   <p><strong>Creative Supplies Warehouse Management System (WMS)</strong></p>
   <p>
-    Platform web berarsitektur Modular Monolith untuk mengelola persediaan perlengkapan kreatif, kolaborasi mitra Supplier, pengadaan barang, serta operasional gudang yang tercatat rapi.
+    Platform web untuk mengelola persediaan perlengkapan kreatif, kolaborasi mitra Supplier, pengadaan barang, serta operasional gudang yang tercatat rapi.
   </p>
 
   <p>
