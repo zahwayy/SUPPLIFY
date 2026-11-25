@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Supplify — Creative Supplies Warehouse Management System",
+  "description": "Supplify - Creative Supplies Warehouse Management System",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
