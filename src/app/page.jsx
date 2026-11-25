@@ -6,7 +6,7 @@ import {
   Palette,
   ArrowRight,
 } from 'lucide-react';
-import SupplifyLogo from '../components/icons/SupplifyLogo.jsx';
+import GuestNavbar from '../components/layout/GuestNavbar.jsx';
 
 const CATEGORY_CARDS = [
   {
@@ -43,59 +43,17 @@ export default function LandingPage() {
       </a>
 
       {/* Navbar Atas */}
-      <header className="sticky top-3 z-30">
-        <div className="supplify-container">
-          <nav
-            aria-label="Navigasi utama"
-            className="w-full h-15 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm px-4 sm:px-6 flex items-center justify-between gap-4"
-          >
-            <Link
-              href="/"
-              className="rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD]"
-            >
-              <SupplifyLogo size={28} />
-            </Link>
-
-            <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
-              <a
-                href="#beranda"
-                className="font-semibold text-[#3243DD] border-b-2 border-[#3243DD] pb-0.5"
-              >
-                Beranda
-              </a>
-              <a
-                href="#tentang"
-                className="hover:text-[#3243DD] transition-colors pb-0.5"
-              >
-                Tentang
-              </a>
-              <a
-                href="#kemitraan"
-                className="hover:text-[#3243DD] transition-colors pb-0.5"
-              >
-                Kemitraan
-              </a>
-            </div>
-
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#FF3D8B]/70 bg-white px-4 py-2 text-sm font-semibold text-[#C81D67] hover:bg-[#FFF0F6] hover:border-[#FF3D8B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3D8B] transition-colors"
-            >
-              Masuk
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <GuestNavbar />
 
       <main className="flex-1">
         {/* Bagian 1: Hero */}
-        <section id="beranda" className="relative pt-8 pb-12 sm:pt-10 sm:pb-14">
+        <section id="beranda" className="relative pt-6 pb-10 sm:pt-10 sm:pb-14">
           <div className="supplify-container">
             <div className="mx-auto max-w-4xl text-center">
               <h1
                 id="content"
                 tabIndex={-1}
-                className="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-slate-900 leading-[1.15] focus:outline-none"
+                className="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-slate-900 leading-[1.15] focus:outline-none text-balance"
               >
                 Persediaan Terkelola,
                 <br />
@@ -108,17 +66,17 @@ export default function LandingPage() {
                 serta koordinasikan pemesanan dengan mitra supplier secara terpadu.
               </p>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3">
                 <Link
                   href="/login"
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] rounded-xl bg-[#3243DD] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#2635BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] focus-visible:ring-offset-2 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto rounded-xl bg-[#3243DD] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#2635BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] focus-visible:ring-offset-2 transition-colors"
                 >
                   Masuk ke Sistem
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/register"
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] rounded-xl border border-[#FF3D8B]/70 bg-white px-6 py-2.5 text-sm font-semibold text-[#C81D67] hover:bg-[#FFF0F6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3D8B] focus-visible:ring-offset-2 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto rounded-xl border border-[#FF3D8B]/70 bg-white px-6 py-2.5 text-sm font-semibold text-[#C81D67] hover:bg-[#FFF0F6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3D8B] focus-visible:ring-offset-2 transition-colors"
                 >
                   Daftar sebagai Supplier
                 </Link>
@@ -146,9 +104,9 @@ export default function LandingPage() {
         </section>
 
         {/* Bagian 2: Tentang Supplify */}
-        <section id="tentang" className="py-12 lg:py-16">
+        <section id="tentang" className="py-8 sm:py-12 lg:py-16">
           <div className="supplify-container grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 space-y-4 min-w-0">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
                 Mengenal Supplify
               </h2>
@@ -213,9 +171,9 @@ export default function LandingPage() {
         </section>
 
         {/* Bagian 3: Kemitraan Supplier */}
-        <section id="kemitraan" className="pt-4 pb-14">
+        <section id="kemitraan" className="pt-4 pb-12 sm:pb-14">
           <div className="supplify-container">
-            <div className="rounded-3xl bg-[#3243DD] text-white border border-[#2635BC] shadow-sm p-7 sm:p-9 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="rounded-3xl bg-[#3243DD] text-white border border-[#2635BC] shadow-sm p-5 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center">
               <div className="lg:col-span-8 space-y-2.5">
                 <h2 className="text-2xl sm:text-3xl font-bold text-white">
                   Bergabung sebagai Mitra Supplier Terverifikasi

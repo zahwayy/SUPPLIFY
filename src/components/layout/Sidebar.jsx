@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -79,23 +80,36 @@ export default function Sidebar({ role, isOpen, onClose }) {
   const navItems = getNavigationForRole(role);
   const groups = groupNavItems(navItems);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        onClose?.();
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-[1px] lg:hidden"
+          className="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-[1px] lg:hidden transition-opacity"
           onClick={onClose}
           aria-hidden="true"
         />
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200/80 flex flex-col transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen shrink-0 lg:translate-x-0 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        id="dashboard-sidebar"
+        aria-label="Sidebar navigasi"
+        className={`fixed inset-y-0 left-0 z-40 w-[min(17.5rem,85dvw)] sm:w-64 h-dvh bg-white border-r border-slate-200/80 flex flex-col transition-transform duration-200 ease-out lg:sticky lg:top-0 lg:h-dvh lg:w-64 shrink-0 lg:translate-x-0 ${
+          isOpen ? 'translate-x-0 shadow-xl lg:shadow-none' : '-translate-x-full'
         }`}
       >
         {/* Clean Brand Header */}
-        <div className="h-16 px-5 flex items-center justify-between bg-white border-b border-slate-100 shrink-0">
+        <div className="h-16 px-4 sm:px-5 flex items-center justify-between bg-white border-b border-slate-100 shrink-0">
           <Link
             href="/dashboard"
             onClick={onClose}
@@ -106,17 +120,17 @@ export default function Sidebar({ role, isOpen, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="lg:hidden rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-800 cursor-pointer"
+            className="lg:hidden inline-flex items-center justify-center min-h-[40px] min-w-[40px] rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] cursor-pointer"
             aria-label="Tutup menu navigasi"
           >
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
         {/* Structured Royal Blue Operational Sidebar */}
         <div className="flex-1 flex flex-col bg-[#3243DD] text-white px-3 pt-4 pb-4 overflow-hidden">
           <nav
-            className="flex-1 overflow-y-auto space-y-4 pr-0.5"
+            className="flex-1 overflow-y-auto overscroll-contain space-y-4 pr-0.5"
             aria-label="Navigasi utama"
           >
             {groups.map((group) => (

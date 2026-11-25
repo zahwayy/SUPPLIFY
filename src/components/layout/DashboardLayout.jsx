@@ -31,6 +31,7 @@ export default function DashboardLayout({
             user={user}
             notifications={notifications}
             unreadNotificationCount={unreadNotificationCount}
+            sidebarOpen={sidebarOpen}
             onOpenMenu={() => setSidebarOpen(true)}
           />
           <MainContent>{children}</MainContent>

@@ -25,7 +25,9 @@ export default function PageHeader({
           )}
         </div>
         {actions && (
-          <div className="flex flex-wrap items-center gap-2 shrink-0">{actions}</div>
+          <div className="flex flex-wrap items-center gap-2 max-w-full sm:shrink-0">
+            {actions}
+          </div>
         )}
       </div>
     </div>

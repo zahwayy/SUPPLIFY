@@ -88,7 +88,7 @@ export default function NotificationBell({ notifications = [], unreadCount = 0 }
           unreadCount > 0 ? `Notifikasi (${unreadCount} belum dibaca)` : 'Notifikasi'
         }
         title="Notifikasi"
-        className="relative inline-flex items-center justify-center min-h-[38px] min-w-[38px] rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-[#EEF1FD]/70 hover:text-[#3243DD] hover:border-[#3243DD]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] transition-colors cursor-pointer"
+        className="relative inline-flex items-center justify-center min-h-[40px] min-w-[40px] rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-[#EEF1FD]/70 hover:text-[#3243DD] hover:border-[#3243DD]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] transition-colors cursor-pointer"
       >
         <Bell className="h-4 w-4" aria-hidden="true" />
         {unreadCount > 0 && (
@@ -104,7 +104,7 @@ export default function NotificationBell({ notifications = [], unreadCount = 0 }
         popover="auto"
         className="supplify-action-popover w-[calc(100vw-1.5rem)] sm:w-96 rounded-2xl border border-slate-200 bg-white shadow-xl overflow-hidden text-left"
       >
-        <div className="flex flex-col max-h-[420px]">
+        <div className="flex flex-col max-h-[min(420px,75dvh)]">
           <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-slate-100 bg-[#F4F5F8]/70 shrink-0">
             <div className="flex items-center gap-2">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-700">
