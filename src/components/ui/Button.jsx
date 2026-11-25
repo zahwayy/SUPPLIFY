@@ -42,7 +42,7 @@ export default function Button({
     <button
       type={type}
       disabled={disabled || loading}
-      className={`inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 disabled:opacity-55 disabled:cursor-not-allowed ${variantCls} ${sizeCls} ${className}`}
+      className={`inline-flex items-center justify-center text-center whitespace-normal sm:whitespace-nowrap leading-snug font-semibold transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 disabled:opacity-55 disabled:cursor-not-allowed ${variantCls} ${sizeCls} ${className}`}
       {...props}
     >
       {loading && <Loader2 className="h-4 w-4 animate-spin shrink-0" aria-hidden="true" />}

@@ -80,9 +80,9 @@ export default function Modal({
       onClose={handleNativeClose}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      className={`m-auto w-[calc(100%-1.5rem)] ${maxWidthClass} max-h-[90vh] open:flex flex-col rounded-xl bg-white p-0 text-left text-slate-900 border border-slate-200 shadow-xl overflow-hidden`}
+      className={`m-auto w-[calc(100%-1.5rem)] ${maxWidthClass} max-h-[90dvh] open:flex flex-col rounded-xl bg-white p-0 text-left text-slate-900 border border-slate-200 shadow-xl overflow-hidden overscroll-contain`}
     >
-      <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-slate-200/70 bg-[#F4F5F8]/60 shrink-0">
+      <div className="flex items-start justify-between gap-3 px-4 py-3.5 sm:gap-4 sm:px-5 sm:py-4 border-b border-slate-200/70 bg-[#F4F5F8]/60 shrink-0">
         <div className="min-w-0">
           <h2
             id={titleId}
@@ -99,17 +99,17 @@ export default function Modal({
         <button
           type="button"
           onClick={() => onClose?.()}
-          className="min-h-[32px] min-w-[32px] flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-200/70 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] transition-colors cursor-pointer shrink-0"
+          className="min-h-[36px] min-w-[36px] flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-200/70 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] transition-colors cursor-pointer shrink-0"
           aria-label="Tutup dialog"
         >
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
 
-      <div className="p-5 overflow-y-auto flex-1">{children}</div>
+      <div className="p-4 sm:p-5 overflow-y-auto overscroll-contain flex-1">{children}</div>
 
       {footer && (
-        <div className="flex flex-wrap items-center justify-end gap-2.5 px-5 py-3.5 border-t border-slate-200/70 bg-[#F4F5F8]/70 shrink-0">
+        <div className="flex flex-wrap items-center justify-end gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-t border-slate-200/70 bg-[#F4F5F8]/70 shrink-0">
           {footer}
         </div>
       )}

@@ -1,6 +1,11 @@
-export function Table({ children, className = '' }) {
+export function Table({ children, className = '', ariaLabel = 'Tabel data' }) {
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-slate-200/90 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+    <div
+      role="region"
+      aria-label={ariaLabel}
+      tabIndex={0}
+      className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-slate-200/90 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.03)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD]"
+    >
       <table className={`w-full border-collapse text-left text-sm ${className}`}>
         {children}
       </table>
@@ -38,7 +43,7 @@ export function TableHead({ children, scope = 'col', className = '' }) {
   return (
     <th
       scope={scope}
-      className={`px-3.5 py-2.5 sm:px-4 sm:py-3 font-semibold whitespace-nowrap ${className}`}
+      className={`px-3 py-2.5 sm:px-4 sm:py-3 font-semibold whitespace-nowrap ${className}`}
     >
       {children}
     </th>
@@ -47,7 +52,7 @@ export function TableHead({ children, scope = 'col', className = '' }) {
 
 export function TableCell({ children, className = '' }) {
   return (
-    <td className={`px-3.5 py-2.5 sm:px-4 sm:py-3 align-middle ${className}`}>
+    <td className={`px-3 py-2.5 sm:px-4 sm:py-3 align-middle ${className}`}>
       {children}
     </td>
   );

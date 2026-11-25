@@ -30,7 +30,7 @@ export default function WorkflowStepper({
           </span>
         </div>
       ) : (
-        <ol className="flex flex-wrap items-center gap-y-2.5">
+        <ol className="grid grid-cols-1 gap-2.5 sm:flex sm:flex-wrap sm:items-center sm:gap-0 sm:gap-y-2.5">
           {steps.map((step, idx) => {
             const isCompleted = currentIndex > idx;
             const isCurrent = currentIndex === idx;
@@ -69,7 +69,7 @@ export default function WorkflowStepper({
                       {step.label}
                     </span>
                     {step.sublabel && (
-                      <span className="hidden md:block text-[11px] text-slate-400">
+                      <span className="block sm:hidden md:block text-[11px] text-slate-400">
                         {step.sublabel}
                       </span>
                     )}
@@ -78,7 +78,7 @@ export default function WorkflowStepper({
 
                 {idx < steps.length - 1 && (
                   <div
-                    className={`mx-2.5 sm:mx-3.5 h-0.5 w-5 sm:w-8 rounded-full ${
+                    className={`hidden sm:block mx-2.5 sm:mx-3.5 h-0.5 w-5 sm:w-8 rounded-full ${
                       isCompleted ? 'bg-emerald-500' : 'bg-slate-200'
                     }`}
                     aria-hidden="true"

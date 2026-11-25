@@ -18,17 +18,25 @@ export default function Dropdown({
         setOpen(false);
       }
     }
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') setOpen(false);
+    }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
-    <div ref={containerRef} className="relative inline-block text-left">
+    <div ref={containerRef} className="relative inline-block max-w-full text-left">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
-        className={`inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer ${triggerClassName}`}
+        aria-haspopup="menu"
+        className={`inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer ${triggerClassName}`}
       >
         <span>{label}</span>
         <ChevronDown className="h-4 w-4 text-slate-500" aria-hidden="true" />
@@ -36,7 +44,7 @@ export default function Dropdown({
 
       {open && (
         <div
-          className={`absolute z-30 mt-2 w-48 rounded-xl border border-slate-200 bg-white py-1.5 shadow-lg ${
+          className={`absolute z-30 mt-2 w-48 max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white py-1.5 shadow-lg ${
             align === 'right' ? 'right-0' : 'left-0'
           }`}
           role="menu"
@@ -50,7 +58,7 @@ export default function Dropdown({
                 setOpen(false);
                 item.onClick?.();
               }}
-              className={`w-full flex items-center gap-2 px-3.5 py-2 text-left text-sm transition-colors cursor-pointer ${
+              className={`w-full min-h-[40px] flex items-center gap-2 px-3.5 py-2 text-left text-sm transition-colors cursor-pointer ${
                 item.danger
                   ? 'text-red-600 hover:bg-red-50'
                   : 'text-slate-700 hover:bg-[#F4F5F8] hover:text-[#3243DD]'

@@ -20,7 +20,7 @@ export function Card({
 
   return (
     <div
-      className={`rounded-xl border shadow-[0_1px_2px_rgba(15,23,42,0.04)] ${variantCls} ${ringCls} ${className}`}
+      className={`min-w-0 rounded-xl border shadow-[0_1px_2px_rgba(15,23,42,0.04)] ${variantCls} ${ringCls} ${className}`}
     >
       {children}
     </div>

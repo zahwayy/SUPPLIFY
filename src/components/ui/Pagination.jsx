@@ -10,13 +10,13 @@ export default function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <div className={`flex items-center justify-between gap-3 ${className}`}>
+    <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3 ${className}`}>
       <p className="text-xs sm:text-sm text-slate-600">
         Halaman <span className="font-semibold text-slate-900">{page}</span> dari{' '}
         <span className="font-semibold text-slate-900">{totalPages}</span>
       </p>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between sm:justify-end gap-2">
         <Button
           variant="secondary"
           size="sm"
