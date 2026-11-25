@@ -84,11 +84,11 @@ Supplify menerapkan *Role-Based Access Control (RBAC)* yang ketat untuk empat pe
 
 ```text
 SUPPLIFY/
-├── database/       # Skema PostgreSQL terpadu dan dataset seed awal
 ├── public/         # Ilustrasi merek dan aset gambar katalog produk
 ├── src/
 │   ├── app/        # Halaman Next.js App Router, route group, dan API handler
 │   ├── components/ # Komponen UI dasar, layout shell, dan komponen fitur
+│   ├── database/   # Skema PostgreSQL terpadu dan dataset seed awal
 │   ├── lib/        # Database pool, RBAC, helper auth/session, storage, dan konstanta
 │   ├── modules/    # Logika domain Modular Monolith (actions, service, validasi, repo)
 │   └── middleware.js

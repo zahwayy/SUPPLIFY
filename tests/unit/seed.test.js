@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { verifyPassword } from '../../src/lib/auth/password.js';
 
-const MIGRATION_PATH = path.resolve('database/migrations/schema.sql');
-const SEED_PATH = path.resolve('database/seeds/seed.sql');
+const MIGRATION_PATH = path.resolve('src/database/migrations/schema.sql');
+const SEED_PATH = path.resolve('src/database/seeds/seed.sql');
 
 test('Unified schema.sql uses standard SQL without IF NOT EXISTS, wraps in BEGIN/COMMIT, and enforces agreed constraints', () => {
   const sql = fs.readFileSync(MIGRATION_PATH, 'utf8');
