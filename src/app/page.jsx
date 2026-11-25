@@ -72,7 +72,6 @@ export default function LandingPage() {
                   className="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto rounded-xl bg-[#3243DD] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#2635BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3243DD] focus-visible:ring-offset-2 transition-colors"
                 >
                   Masuk ke Sistem
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/register"
