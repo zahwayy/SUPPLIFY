@@ -726,7 +726,7 @@ export default function ProductsManager({
         />
       )}
 
-      {/* Modal Tambah / Perbarui Produk (Hanya Admin) */}
+      {/* Modal Tambah / Perbarui Produk (Admin & Manager) */}
       {canManage && (
         <Modal
           open={Boolean(modalMode)}
