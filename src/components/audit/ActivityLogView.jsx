@@ -157,12 +157,12 @@ export default function ActivityLogView({ logs, initialFilters }) {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Waktu</TableHead>
+                <TableHead className="hidden lg:table-cell">Waktu</TableHead>
                 <TableHead>Aktor</TableHead>
-                <TableHead>Peran</TableHead>
+                <TableHead className="hidden lg:table-cell">Peran</TableHead>
                 <TableHead>Aktivitas</TableHead>
-                <TableHead>Modul</TableHead>
-                <TableHead>Ringkasan</TableHead>
+                <TableHead className="hidden md:table-cell">Modul</TableHead>
+                <TableHead className="hidden sm:table-cell">Ringkasan</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -172,22 +172,29 @@ export default function ActivityLogView({ logs, initialFilters }) {
 
                 return (
                   <TableRow key={log.id}>
-                    <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                       {formatDateTime(log.created_at)}
                     </TableCell>
                     <TableCell className="text-xs font-semibold text-slate-900">
-                      {log.actor_name || 'Sistem'}
+                      <span>{log.actor_name || 'Sistem'}</span>
+                      <p className="mt-0.5 text-[11px] font-normal text-slate-500 lg:hidden">
+                        {formatDateTime(log.created_at)}
+                        <span className="md:hidden"> • {getAuditEntityLabel(log.entity_type)}</span>
+                      </p>
+                      <p className="mt-0.5 text-[11px] font-normal text-slate-600 line-clamp-2 sm:hidden">
+                        {summary}
+                      </p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       {log.actor_role ? <RoleBadge role={log.actor_role} /> : '—'}
                     </TableCell>
                     <TableCell>
                       <Badge tone={actionMeta.tone}>{actionMeta.label}</Badge>
                     </TableCell>
-                    <TableCell className="text-xs font-medium text-slate-700 whitespace-nowrap">
+                    <TableCell className="hidden md:table-cell text-xs font-medium text-slate-700 whitespace-nowrap">
                       {getAuditEntityLabel(log.entity_type)}
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600 max-w-md">
+                    <TableCell className="hidden sm:table-cell text-xs text-slate-600 max-w-md">
                       <span className="line-clamp-2">{summary}</span>
                     </TableCell>
                   </TableRow>

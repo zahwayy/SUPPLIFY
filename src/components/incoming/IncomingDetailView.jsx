@@ -398,7 +398,7 @@ export default function IncomingDetailView({
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="min-w-0 lg:col-span-2 space-y-6">
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-2">
               <CardTitle>Hasil Pemeriksaan &amp; Persetujuan Produk ({items.length} SKU)</CardTitle>
@@ -840,7 +840,7 @@ export default function IncomingDetailView({
                       <Badge tone={condMeta.tone}>{condMeta.label}</Badge>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 rounded-lg bg-white border border-slate-200/80 p-2.5 tabular-nums">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 rounded-lg bg-white border border-slate-200/80 p-2.5 tabular-nums">
                       <div>
                         <span className="block text-[11px] text-slate-500">Pesanan PO</span>
                         <strong className="text-slate-900">

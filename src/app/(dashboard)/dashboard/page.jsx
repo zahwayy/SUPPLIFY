@@ -146,7 +146,7 @@ export default async function DashboardPage() {
         ]}
         mainContent={
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
+            <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <CardTitle>Pengajuan &amp; Status Supplier</CardTitle>
               </div>
@@ -261,7 +261,7 @@ export default async function DashboardPage() {
             </Card>
 
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between gap-2">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-2">
                 <CardTitle className="flex items-center gap-2 text-sm">
                   <Activity className="h-4 w-4 text-[#3243DD]" aria-hidden="true" />
                   Aktivitas Terbaru
@@ -382,7 +382,7 @@ export default async function DashboardPage() {
           <>
             {/* Antrean Persetujuan & Transaksi Gudang */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between gap-3">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <CardTitle>Antrean Persetujuan &amp; Transaksi Gudang</CardTitle>
                   <p className="mt-0.5 text-xs text-slate-500">
@@ -477,7 +477,7 @@ export default async function DashboardPage() {
 
             {/* Recent Stock Movements */}
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between gap-2">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <History className="h-4 w-4 text-[#3243DD]" aria-hidden="true" />
@@ -556,7 +556,7 @@ export default async function DashboardPage() {
           <>
             {/* Low & Out of Stock Watchlist */}
             <Card variant={criticalStock > 0 ? 'soft-pink' : 'default'}>
-              <CardHeader className="flex flex-row items-center justify-between gap-2">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-2">
                 <CardTitle className="flex items-center gap-2 text-sm">
                   <AlertTriangle
                     className={`h-4 w-4 ${
@@ -759,7 +759,7 @@ export default async function DashboardPage() {
         ]}
         mainContent={
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between gap-3">
+            <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <CardTitle>Riwayat Pengajuan Transaksi Anda</CardTitle>
                 <p className="mt-0.5 text-xs text-slate-500">
@@ -844,7 +844,7 @@ export default async function DashboardPage() {
           <>
             {/* Actionable POs ready for Incoming */}
             <Card variant={data.actionRows.length > 0 ? 'soft-pink' : 'soft-blue'}>
-              <CardHeader className="flex flex-row items-center justify-between gap-2">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-2">
                 <CardTitle className="text-sm">PO Siap Diperiksa</CardTitle>
                 <Badge tone={data.actionRows.length > 0 ? 'accent' : 'neutral'}>
                   {data.actionRows.length}
@@ -888,7 +888,7 @@ export default async function DashboardPage() {
 
             {/* Outgoing ready for shipping */}
             <Card variant="soft-blue">
-              <CardHeader className="flex flex-row items-center justify-between gap-2">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-2">
                 <CardTitle className="text-sm">Siap Dikirim</CardTitle>
                 <Badge tone={data.secondaryRows.length > 0 ? 'success' : 'neutral'}>
                   {data.secondaryRows.length}
@@ -987,7 +987,7 @@ export default async function DashboardPage() {
       ]}
       mainContent={
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between gap-3">
+          <CardHeader className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <CardTitle>Purchase Order Terbaru untuk Perusahaan Anda</CardTitle>
               <p className="mt-0.5 text-xs text-slate-500">

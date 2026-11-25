@@ -330,11 +330,11 @@ export default function PurchaseOrdersManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Kode PO</TableHead>
-                {!isSupplier && <TableHead>Supplier</TableHead>}
-                <TableHead>Tanggal &amp; Estimasi</TableHead>
-                <TableHead>Item / Pemenuhan</TableHead>
+                {!isSupplier && <TableHead className="hidden md:table-cell">Supplier</TableHead>}
+                <TableHead className="hidden lg:table-cell">Tanggal &amp; Estimasi</TableHead>
+                <TableHead className="hidden md:table-cell">Item / Pemenuhan</TableHead>
                 <TableHead>Status PO</TableHead>
-                {!isSupplier && <TableHead>Tahap Penerimaan (Incoming)</TableHead>}
+                {!isSupplier && <TableHead className="hidden lg:table-cell">Tahap Penerimaan (Incoming)</TableHead>}
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
@@ -370,19 +370,23 @@ export default function PurchaseOrdersManager({
                           {po.courier_name}
                         </p>
                       )}
+                      <p className="mt-0.5 font-sans text-[11px] font-normal text-slate-500 whitespace-normal md:hidden">
+                        {!isSupplier && po.supplier_name ? `${po.supplier_name} • ` : ''}
+                        {po.item_count} SKU ({orderedQty} unit)
+                      </p>
                     </TableCell>
                     {!isSupplier && (
-                      <TableCell className="font-semibold text-slate-900">
+                      <TableCell className="hidden md:table-cell font-semibold text-slate-900">
                         {po.supplier_name}
                       </TableCell>
                     )}
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs tabular-nums whitespace-nowrap">
                       <p className="text-slate-800">{formatDate(po.order_date)}</p>
                       <p className="text-[11px] text-slate-500">
                         Est: {formatDate(po.expected_arrival)}
                       </p>
                     </TableCell>
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden md:table-cell text-xs tabular-nums whitespace-nowrap">
                       <p className="font-medium text-slate-800">
                         {po.item_count} SKU ({orderedQty} unit)
                       </p>
@@ -404,7 +408,7 @@ export default function PurchaseOrdersManager({
                       )}
                     </TableCell>
                     {!isSupplier && (
-                      <TableCell className="text-xs whitespace-nowrap">
+                      <TableCell className="hidden lg:table-cell text-xs whitespace-nowrap">
                         {po.pending_incoming_code ? (
                           <div className="flex flex-col gap-1 items-start">
                             <Link
@@ -594,7 +598,7 @@ export default function PurchaseOrdersManager({
                               : 'border-slate-200 bg-[#F4F5F8]'
                           }`}
                         >
-                          <div className="grid grid-cols-1 sm:grid-cols-[1fr_100px_auto] gap-2 items-center">
+                          <div className="flex flex-col sm:grid sm:grid-cols-[1fr_100px_auto] gap-2 sm:items-center">
                             <SearchableProductSelect
                               value={row.productId}
                               onChange={(val) => {
@@ -648,33 +652,35 @@ export default function PurchaseOrdersManager({
                                 return null;
                               }}
                             />
-                            <input
-                              type="number"
-                              min="1"
-                              step="1"
-                              required
-                              aria-label={`Jumlah pesanan ${idx + 1}`}
-                              value={row.quantity}
-                              onChange={(e) => {
-                                const val = e.target.value;
-                                setItems((prev) =>
-                                  prev.map((it, i) =>
-                                    i === idx ? { ...it, quantity: val } : it
-                                  )
-                                );
-                              }}
-                              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm tabular-nums focus:border-[#3243DD] focus:outline-none"
-                            />
-                            {items.length > 1 && (
-                              <button
-                                type="button"
-                                onClick={() => removeRow(idx)}
-                                className="rounded-lg p-2 text-red-600 hover:bg-red-100 cursor-pointer"
-                                aria-label="Hapus baris item"
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </button>
-                            )}
+                            <div className="flex items-center gap-2 sm:contents">
+                              <input
+                                type="number"
+                                min="1"
+                                step="1"
+                                required
+                                aria-label={`Jumlah pesanan ${idx + 1}`}
+                                value={row.quantity}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  setItems((prev) =>
+                                    prev.map((it, i) =>
+                                      i === idx ? { ...it, quantity: val } : it
+                                    )
+                                  );
+                                }}
+                                className="flex-1 min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm tabular-nums focus:border-[#3243DD] focus:outline-none"
+                              />
+                              {items.length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => removeRow(idx)}
+                                  className="min-h-[40px] min-w-[40px] inline-flex items-center justify-center rounded-lg p-2 text-red-600 hover:bg-red-100 cursor-pointer shrink-0"
+                                  aria-label="Hapus baris item"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </button>
+                              )}
+                            </div>
                           </div>
                           {detail?.prod && detail.hasValidPrice && !isDup && (
                             <p className="text-[11px] text-slate-600 px-1 tabular-nums">

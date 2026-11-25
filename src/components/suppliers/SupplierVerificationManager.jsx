@@ -267,11 +267,11 @@ export default function SupplierVerificationManager({
           <TableHeader>
             <TableRow>
               <TableHead>Perusahaan</TableHead>
-              <TableHead>Penanggung Jawab</TableHead>
-              <TableHead>Kategori Barang</TableHead>
-              <TableHead>Email &amp; Telepon</TableHead>
+              <TableHead className="hidden lg:table-cell">Penanggung Jawab</TableHead>
+              <TableHead className="hidden md:table-cell">Kategori Barang</TableHead>
+              <TableHead className="hidden md:table-cell">Email &amp; Telepon</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Terdaftar</TableHead>
+              <TableHead className="hidden lg:table-cell">Terdaftar</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -279,12 +279,15 @@ export default function SupplierVerificationManager({
             {suppliers.map((sup) => (
               <TableRow key={sup.id}>
                 <TableCell className="font-semibold text-slate-900">
-                  {sup.company_name}
+                  <span>{sup.company_name}</span>
+                  <p className="mt-0.5 text-[11px] font-normal text-slate-500 md:hidden">
+                    {sup.contact_name} • {sup.email}
+                  </p>
                 </TableCell>
-                <TableCell className="text-xs sm:text-sm text-slate-700">
+                <TableCell className="hidden lg:table-cell text-xs sm:text-sm text-slate-700">
                   {sup.contact_name}
                 </TableCell>
-                <TableCell className="max-w-[220px]">
+                <TableCell className="hidden md:table-cell max-w-[220px]">
                   {Array.isArray(sup.categories) && sup.categories.length > 0 ? (
                     <div className="flex flex-wrap gap-1">
                       {sup.categories.map((cat) => (
@@ -297,7 +300,7 @@ export default function SupplierVerificationManager({
                     <span className="text-xs text-slate-400">Belum dipilih</span>
                   )}
                 </TableCell>
-                <TableCell className="text-xs">
+                <TableCell className="hidden md:table-cell text-xs">
                   <p className="font-medium text-slate-900">{sup.email}</p>
                   <p className="text-slate-500">{sup.phone}</p>
                 </TableCell>
@@ -313,7 +316,7 @@ export default function SupplierVerificationManager({
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                   {formatDateTime(sup.created_at)}
                 </TableCell>
                 <TableCell className="text-right whitespace-nowrap">

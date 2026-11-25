@@ -174,7 +174,7 @@ export default function ProfileEditorCard({ profile }) {
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between gap-3">
+      <CardHeader className="flex flex-wrap items-center justify-between gap-3">
         <CardTitle className="flex items-center gap-2">
           <User className="h-4 w-4 text-[#3243DD]" aria-hidden="true" />
           Identitas Akun

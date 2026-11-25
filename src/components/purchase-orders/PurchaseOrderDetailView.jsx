@@ -463,7 +463,7 @@ export default function PurchaseOrderDetailView({
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="min-w-0 lg:col-span-2 space-y-6">
           {/* Ordered Products & Partial Fulfillment Progress */}
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-2">

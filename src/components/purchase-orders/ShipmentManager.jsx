@@ -82,10 +82,10 @@ export default function ShipmentManager({
             <TableRow>
               <TableHead>Kode PO</TableHead>
               <TableHead>Status PO</TableHead>
-              <TableHead>Kurir / Ekspedisi</TableHead>
-              <TableHead>Nomor Resi / Keterangan</TableHead>
-              <TableHead>Waktu Kirim</TableHead>
-              <TableHead>Estimasi Tiba</TableHead>
+              <TableHead className="hidden md:table-cell">Kurir / Ekspedisi</TableHead>
+              <TableHead className="hidden md:table-cell">Nomor Resi / Keterangan</TableHead>
+              <TableHead className="hidden lg:table-cell">Waktu Kirim</TableHead>
+              <TableHead className="hidden lg:table-cell">Estimasi Tiba</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -103,22 +103,26 @@ export default function ShipmentManager({
                     >
                       {s.po_code}
                     </Link>
+                    <p className="mt-0.5 font-sans text-[11px] font-normal text-slate-500 whitespace-normal md:hidden">
+                      {s.courier_name || 'Kurir belum diisi'}
+                      {s.tracking_number ? ` • ${s.tracking_number}` : ''}
+                    </p>
                   </TableCell>
                   <TableCell>
                     <StatusPill status={s.po_status} />
                   </TableCell>
-                  <TableCell className="text-xs font-medium text-slate-800">
+                  <TableCell className="hidden md:table-cell text-xs font-medium text-slate-800">
                     {s.courier_name || (
                       <span className="text-amber-700 font-semibold">Belum diisi</span>
                     )}
                   </TableCell>
-                  <TableCell className="font-mono text-xs text-slate-700">
+                  <TableCell className="hidden md:table-cell font-mono text-xs text-slate-700">
                     {s.tracking_number || s.no_tracking_reason || '—'}
                   </TableCell>
-                  <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                  <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                     {formatDateTime(s.shipped_at)}
                   </TableCell>
-                  <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                  <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                     {formatDate(s.expected_arrival)}
                   </TableCell>
                   <TableCell className="text-right whitespace-nowrap">

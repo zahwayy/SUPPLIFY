@@ -251,8 +251,8 @@ export default async function ProductDetailPage({ params }) {
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2">
-          <CardHeader className="flex flex-row items-center justify-between gap-2">
+        <Card className="min-w-0 lg:col-span-2">
+          <CardHeader className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <CardTitle className="flex items-center gap-2">
                 <History className="h-4 w-4 text-[#3243DD]" aria-hidden="true" />

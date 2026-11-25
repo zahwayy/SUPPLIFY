@@ -562,11 +562,11 @@ export default function ProductsManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Produk</TableHead>
-                <TableHead>Kategori</TableHead>
+                <TableHead className="hidden md:table-cell">Kategori</TableHead>
                 <TableHead>Stok</TableHead>
-                <TableHead>Min / Rendah</TableHead>
-                <TableHead>Harga Beli</TableHead>
-                <TableHead>Harga Jual</TableHead>
+                <TableHead className="hidden lg:table-cell">Min / Rendah</TableHead>
+                <TableHead className="hidden lg:table-cell">Harga Beli</TableHead>
+                <TableHead className="hidden md:table-cell">Harga Jual</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
@@ -578,7 +578,7 @@ export default function ProductsManager({
                 return (
                   <TableRow key={product.id}>
                     <TableCell>
-                      <div className="flex items-center gap-3 min-w-[200px]">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-[145px] sm:min-w-[200px]">
                         <div className="h-11 w-11 rounded-lg border border-slate-200 bg-[#F4F5F8] flex items-center justify-center overflow-hidden shrink-0">
                           {imageSrc ? (
                             <img
@@ -606,7 +606,7 @@ export default function ProductsManager({
                           >
                             {product.name}
                           </Link>
-                          <div className="flex flex-wrap items-center gap-2 text-xs">
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
                             <Link
                               href={`/products/${product.id}`}
                               className="font-mono font-semibold text-[#3243DD] hover:underline"
@@ -619,10 +619,13 @@ export default function ProductsManager({
                               </span>
                             )}
                           </div>
+                          <p className="mt-0.5 text-[11px] text-slate-500 truncate md:hidden">
+                            {product.category_name} • {formatCurrencyIDR(product.selling_price)}
+                          </p>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600">
+                    <TableCell className="hidden md:table-cell text-xs text-slate-600">
                       {product.category_name}
                     </TableCell>
                     <TableCell className="font-semibold text-slate-900 tabular-nums whitespace-nowrap">
@@ -631,17 +634,17 @@ export default function ProductsManager({
                         {product.unit || ''}
                       </span>
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600 tabular-nums">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums">
                       {product.minimum_stock !== null ? product.minimum_stock : '—'}
                       {product.low_stock_threshold !== null &&
                       product.low_stock_threshold !== undefined
                         ? ` / ${product.low_stock_threshold}`
                         : ''}
                     </TableCell>
-                    <TableCell className="text-xs text-slate-700 tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-700 tabular-nums whitespace-nowrap">
                       {formatCurrencyIDR(product.purchase_price)}
                     </TableCell>
-                    <TableCell className="text-xs text-slate-700 tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden md:table-cell text-xs text-slate-700 tabular-nums whitespace-nowrap">
                       {formatCurrencyIDR(product.selling_price)}
                     </TableCell>
                     <TableCell>

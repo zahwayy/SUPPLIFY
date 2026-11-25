@@ -143,13 +143,13 @@ export default function StockMovementsView({
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Waktu</TableHead>
+                <TableHead className="hidden lg:table-cell">Waktu</TableHead>
                 <TableHead>Produk</TableHead>
-                <TableHead>Jenis Pergerakan</TableHead>
-                <TableHead>Sumber Transaksi</TableHead>
+                <TableHead className="hidden md:table-cell">Jenis Pergerakan</TableHead>
+                <TableHead className="hidden md:table-cell">Sumber Transaksi</TableHead>
                 <TableHead>Perubahan</TableHead>
-                <TableHead>Sebelum → Sesudah</TableHead>
-                <TableHead>Diproses Oleh</TableHead>
+                <TableHead className="hidden sm:table-cell">Sebelum → Sesudah</TableHead>
+                <TableHead className="hidden lg:table-cell">Diproses Oleh</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -161,7 +161,7 @@ export default function StockMovementsView({
 
                 return (
                   <TableRow key={row.id}>
-                    <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                       {formatDateTime(row.created_at)}
                     </TableCell>
                     <TableCell>
@@ -179,11 +179,14 @@ export default function StockMovementsView({
                           </span>
                         ) : null}
                       </p>
+                      <p className="mt-0.5 text-[11px] text-slate-500 md:hidden">
+                        {cfg.label} • <span className="font-mono">{sourceLabel}</span>
+                      </p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <Badge tone={cfg.tone}>{cfg.label}</Badge>
                     </TableCell>
-                    <TableCell className="font-mono text-xs">
+                    <TableCell className="hidden md:table-cell font-mono text-xs">
                       {sourceHref ? (
                         <Link
                           href={sourceHref}
@@ -207,12 +210,15 @@ export default function StockMovementsView({
                       <span className="text-xs font-normal text-slate-500">
                         {row.unit || ''}
                       </span>
+                      <p className="mt-0.5 text-[11px] font-normal text-slate-500 sm:hidden">
+                        {row.stock_before} → {row.stock_after}
+                      </p>
                     </TableCell>
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden sm:table-cell text-xs tabular-nums whitespace-nowrap">
                       {row.stock_before} →{' '}
                       <strong className="text-slate-900">{row.stock_after}</strong>
                     </TableCell>
-                    <TableCell className="text-xs text-slate-700">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-700">
                       {row.actor_name}
                     </TableCell>
                   </TableRow>

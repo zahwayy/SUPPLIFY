@@ -329,12 +329,12 @@ export default function IncomingManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Kode Incoming</TableHead>
-                <TableHead>Referensi PO</TableHead>
-                <TableHead>Supplier</TableHead>
-                <TableHead>Diterima / Disetujui</TableHead>
-                <TableHead>Diperiksa Oleh</TableHead>
+                <TableHead className="hidden md:table-cell">Referensi PO</TableHead>
+                <TableHead className="hidden md:table-cell">Supplier</TableHead>
+                <TableHead className="hidden lg:table-cell">Diterima / Disetujui</TableHead>
+                <TableHead className="hidden lg:table-cell">Diperiksa Oleh</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Tanggal</TableHead>
+                <TableHead className="hidden md:table-cell">Tanggal</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
@@ -350,8 +350,11 @@ export default function IncomingManager({
                         Ada catatan ketidaksesuaian
                       </p>
                     )}
+                    <p className="mt-0.5 font-sans text-[11px] font-normal text-slate-500 whitespace-normal md:hidden">
+                      {tx.po_code} • {tx.supplier_name} • {tx.item_count} SKU
+                    </p>
                   </TableCell>
-                  <TableCell className="font-mono text-xs whitespace-nowrap">
+                  <TableCell className="hidden md:table-cell font-mono text-xs whitespace-nowrap">
                     <Link
                       href={`/purchase-orders/${tx.purchase_order_id}`}
                       className="text-slate-800 hover:text-[#3243DD] hover:underline"
@@ -359,10 +362,10 @@ export default function IncomingManager({
                       {tx.po_code}
                     </Link>
                   </TableCell>
-                  <TableCell className="text-xs font-semibold text-slate-900">
+                  <TableCell className="hidden md:table-cell text-xs font-semibold text-slate-900">
                     {tx.supplier_name}
                   </TableCell>
-                  <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                  <TableCell className="hidden lg:table-cell text-xs tabular-nums whitespace-nowrap">
                     <p>
                       {tx.item_count} SKU ({tx.total_quantity} fisik)
                     </p>
@@ -376,13 +379,13 @@ export default function IncomingManager({
                       </p>
                     ) : null}
                   </TableCell>
-                  <TableCell className="text-xs text-slate-700">
+                  <TableCell className="hidden lg:table-cell text-xs text-slate-700">
                     {tx.created_by_name}
                   </TableCell>
                   <TableCell>
                     <StatusPill status={tx.status} />
                   </TableCell>
-                  <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                  <TableCell className="hidden md:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                     {formatDateTime(tx.transaction_date)}
                   </TableCell>
                   <TableCell className="text-right whitespace-nowrap">

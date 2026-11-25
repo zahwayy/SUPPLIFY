@@ -255,12 +255,12 @@ export default function InventoryView({
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>SKU</TableHead>
+                <TableHead className="hidden md:table-cell">SKU</TableHead>
                 <TableHead>Nama Produk</TableHead>
-                <TableHead>Kategori</TableHead>
+                <TableHead className="hidden md:table-cell">Kategori</TableHead>
                 <TableHead>Stok Tersedia</TableHead>
-                <TableHead>Min / Rendah</TableHead>
-                <TableHead>Lokasi Rak</TableHead>
+                <TableHead className="hidden lg:table-cell">Min / Rendah</TableHead>
+                <TableHead className="hidden lg:table-cell">Lokasi Rak</TableHead>
                 <TableHead>Status Stok</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
@@ -274,7 +274,7 @@ export default function InventoryView({
 
                 return (
                   <TableRow key={item.id}>
-                    <TableCell className="font-mono text-xs font-semibold text-[#3243DD] whitespace-nowrap">
+                    <TableCell className="hidden md:table-cell font-mono text-xs font-semibold text-[#3243DD] whitespace-nowrap">
                       <Link href={`/products/${item.id}`} className="hover:underline">
                         {item.sku}
                       </Link>
@@ -286,8 +286,14 @@ export default function InventoryView({
                       >
                         {item.name}
                       </Link>
+                      <p className="mt-0.5 text-[11px] font-normal text-slate-500 md:hidden">
+                        <span className="font-mono font-semibold text-[#3243DD]">{item.sku}</span>
+                        {' • '}
+                        {item.category_name}
+                        {item.rack_location ? ` • Rak: ${item.rack_location}` : ''}
+                      </p>
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600">
+                    <TableCell className="hidden md:table-cell text-xs text-slate-600">
                       {item.category_name}
                     </TableCell>
                     <TableCell className="font-bold text-slate-900 tabular-nums whitespace-nowrap">
@@ -308,14 +314,14 @@ export default function InventoryView({
                         {item.unit || ''}
                       </span>
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600 tabular-nums">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums">
                       {item.minimum_stock !== null ? item.minimum_stock : '—'}
                       {item.low_stock_threshold !== null &&
                       item.low_stock_threshold !== undefined
                         ? ` / ${item.low_stock_threshold}`
                         : ''}
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600">
                       {item.rack_location || '—'}
                     </TableCell>
                     <TableCell>

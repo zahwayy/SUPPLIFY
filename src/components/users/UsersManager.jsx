@@ -207,10 +207,10 @@ export default function UsersManager({ users, currentUserId, initialFilters }) {
           <TableHeader>
             <TableRow>
               <TableHead>Nama &amp; Organisasi</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Peran</TableHead>
+              <TableHead className="hidden md:table-cell">Email</TableHead>
+              <TableHead className="hidden md:table-cell">Peran</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Terdaftar</TableHead>
+              <TableHead className="hidden lg:table-cell">Terdaftar</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -240,15 +240,19 @@ export default function UsersManager({ users, currentUserId, initialFilters }) {
                         {u.supplier_company_name}
                       </p>
                     )}
+                    <div className="mt-1 flex flex-wrap items-center gap-1.5 md:hidden">
+                      <RoleBadge role={u.role} />
+                      <span className="text-[11px] text-slate-500 break-all">{u.email}</span>
+                    </div>
                   </TableCell>
-                  <TableCell className="text-xs text-slate-700">{u.email}</TableCell>
-                  <TableCell>
+                  <TableCell className="hidden md:table-cell text-xs text-slate-700">{u.email}</TableCell>
+                  <TableCell className="hidden md:table-cell">
                     <RoleBadge role={u.role} />
                   </TableCell>
                   <TableCell>
                     <StatusPill status={u.status} />
                   </TableCell>
-                  <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                  <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                     {formatDateTime(u.created_at)}
                   </TableCell>
                   <TableCell className="text-right whitespace-nowrap">

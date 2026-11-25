@@ -158,7 +158,7 @@ export default function DiscrepancyDetailView({
       <FeedbackBanner feedback={feedback} onDismiss={() => setFeedback(null)} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="min-w-0 lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Detail Temuan Discrepancy</CardTitle>
@@ -539,7 +539,7 @@ export default function DiscrepancyDetailView({
                 { value: 'other', label: 'Lainnya' },
               ]}
             />
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Select
                 name="direction"
                 label="Arah Perubahan"

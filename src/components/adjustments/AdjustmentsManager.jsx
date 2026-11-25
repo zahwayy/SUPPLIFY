@@ -262,9 +262,9 @@ export default function AdjustmentsManager({
               e.preventDefault();
               pushFilters();
             }}
-            className="flex gap-2 w-full md:w-auto"
+            className="flex flex-wrap gap-2 w-full md:w-auto"
           >
-            <div className="relative flex-1 md:w-64">
+            <div className="relative flex-1 min-w-[180px] md:w-64">
               <Search
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"
                 aria-hidden="true"
@@ -301,11 +301,11 @@ export default function AdjustmentsManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Kode</TableHead>
-                <TableHead>Produk</TableHead>
-                <TableHead>Jenis</TableHead>
-                <TableHead>Perubahan</TableHead>
-                <TableHead>Dampak Stok</TableHead>
-                <TableHead>Alasan &amp; Pengaju</TableHead>
+                <TableHead className="hidden sm:table-cell">Produk</TableHead>
+                <TableHead className="hidden lg:table-cell">Jenis</TableHead>
+                <TableHead className="hidden sm:table-cell">Perubahan</TableHead>
+                <TableHead className="hidden lg:table-cell">Dampak Stok</TableHead>
+                <TableHead className="hidden md:table-cell">Alasan &amp; Pengaju</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
@@ -333,8 +333,12 @@ export default function AdjustmentsManager({
                           </Link>
                         </p>
                       )}
+                      <p className="mt-0.5 font-sans text-[11px] font-medium text-slate-700 whitespace-normal sm:hidden">
+                        {adj.product_name} ({adj.quantity_delta > 0 ? `+${adj.quantity_delta}` : adj.quantity_delta}{' '}
+                        {adj.unit || ''})
+                      </p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden sm:table-cell">
                       <Link
                         href={`/products/${adj.product_id}`}
                         className="font-semibold text-slate-900 hover:text-[#3243DD]"
@@ -350,11 +354,11 @@ export default function AdjustmentsManager({
                         ) : null}
                       </p>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <Badge tone={typeMeta.tone}>{typeMeta.label}</Badge>
                     </TableCell>
                     <TableCell
-                      className={`font-bold tabular-nums whitespace-nowrap ${
+                      className={`hidden sm:table-cell font-bold tabular-nums whitespace-nowrap ${
                         adj.quantity_delta > 0 ? 'text-emerald-700' : 'text-red-700'
                       }`}
                     >
@@ -365,7 +369,7 @@ export default function AdjustmentsManager({
                         {adj.unit || ''}
                       </span>
                     </TableCell>
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs tabular-nums whitespace-nowrap">
                       {adj.stock_before !== null && adj.stock_after !== null ? (
                         <span>
                           {adj.stock_before}{' '}
@@ -395,7 +399,7 @@ export default function AdjustmentsManager({
                         </span>
                       )}
                     </TableCell>
-                    <TableCell className="text-xs max-w-xs">
+                    <TableCell className="hidden md:table-cell text-xs max-w-xs">
                       <p className="text-slate-800 leading-snug">{adj.reason}</p>
                       <p className="mt-0.5 text-[11px] text-slate-500">
                         Oleh {adj.requested_by_name} • {formatDateTime(adj.created_at)}
@@ -574,7 +578,7 @@ export default function AdjustmentsManager({
             ]}
           />
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Select
               name="direction"
               label="Arah Perubahan"
@@ -617,7 +621,7 @@ export default function AdjustmentsManager({
                 {selectedProd.rack_location ? ` • Rak: ${selectedProd.rack_location}` : ''}
                 {selectedProd.unit ? ` • Satuan: ${selectedProd.unit}` : ''})
               </p>
-              <div className="grid grid-cols-3 gap-2 tabular-nums">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 tabular-nums">
                 <div>
                   <p className="text-[11px] text-slate-500">Stok Saat Ini</p>
                   <p className="text-base font-bold text-slate-900">

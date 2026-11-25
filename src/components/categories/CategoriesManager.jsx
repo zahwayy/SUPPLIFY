@@ -164,8 +164,8 @@ export default function CategoriesManager({
 
       <Card variant="neutral">
         <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <form onSubmit={handleSearchSubmit} className="flex flex-wrap gap-2 flex-1 max-w-lg">
-            <div className="relative flex-1 min-w-[200px]">
+          <form onSubmit={handleSearchSubmit} className="flex flex-wrap gap-2 w-full sm:flex-1 max-w-lg">
+            <div className="relative min-w-0 w-full sm:w-auto sm:flex-1 sm:min-w-[200px]">
               <Search
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"
                 aria-hidden="true"
@@ -198,11 +198,11 @@ export default function CategoriesManager({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Kode</TableHead>
+              <TableHead className="hidden sm:table-cell">Kode</TableHead>
               <TableHead>Nama Kategori</TableHead>
-              <TableHead>Deskripsi</TableHead>
-              <TableHead>Produk Terkait</TableHead>
-              <TableHead>Supplier Terkait</TableHead>
+              <TableHead className="hidden lg:table-cell">Deskripsi</TableHead>
+              <TableHead className="hidden md:table-cell">Produk Terkait</TableHead>
+              <TableHead className="hidden lg:table-cell">Supplier Terkait</TableHead>
               <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
@@ -213,7 +213,7 @@ export default function CategoriesManager({
               const hasRelations = productCnt > 0 || supplierCnt > 0;
               return (
                 <TableRow key={cat.id}>
-                  <TableCell>
+                  <TableCell className="hidden sm:table-cell">
                     {cat.code ? (
                       <Badge tone="primary" className="font-mono">
                         {cat.code}
@@ -223,12 +223,22 @@ export default function CategoriesManager({
                     )}
                   </TableCell>
                   <TableCell className="font-semibold text-slate-900">
-                    {cat.name}
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {cat.code && (
+                        <Badge tone="primary" className="font-mono sm:hidden">
+                          {cat.code}
+                        </Badge>
+                      )}
+                      <span>{cat.name}</span>
+                    </div>
+                    <p className="mt-0.5 text-[11px] font-normal text-slate-500 md:hidden">
+                      {cat.active_product_count ?? 0} produk • {supplierCnt} supplier
+                    </p>
                   </TableCell>
-                  <TableCell className="max-w-md text-xs sm:text-sm text-slate-600">
+                  <TableCell className="hidden lg:table-cell max-w-md text-xs sm:text-sm text-slate-600">
                     {cat.description || '—'}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="hidden md:table-cell">
                     <Link
                       href={`/products?categoryId=${cat.id}`}
                       className="inline-flex items-center gap-1 group"
@@ -244,7 +254,7 @@ export default function CategoriesManager({
                       </Badge>
                     </Link>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="hidden lg:table-cell">
                     <Badge tone={supplierCnt > 0 ? 'primary' : 'neutral'}>
                       <span className="tabular-nums">{supplierCnt}</span> supplier
                     </Badge>

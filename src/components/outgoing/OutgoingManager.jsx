@@ -275,11 +275,11 @@ export default function OutgoingManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Kode Outgoing</TableHead>
-                <TableHead>Total Barang</TableHead>
-                <TableHead>Diajukan Oleh</TableHead>
-                <TableHead>Customer / Penerima</TableHead>
+                <TableHead className="hidden md:table-cell">Total Barang</TableHead>
+                <TableHead className="hidden lg:table-cell">Diajukan Oleh</TableHead>
+                <TableHead className="hidden md:table-cell">Customer / Penerima</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Tgl Pengiriman</TableHead>
+                <TableHead className="hidden lg:table-cell">Tgl Pengiriman</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
@@ -303,14 +303,18 @@ export default function OutgoingManager({
                       <Link href={`/outgoing/${tx.id}`} className="hover:underline">
                         {tx.transaction_code}
                       </Link>
+                      <p className="mt-0.5 font-sans text-[11px] font-normal text-slate-500 whitespace-normal md:hidden">
+                        {tx.item_count} SKU ({tx.total_quantity} unit) •{' '}
+                        {tx.recipient_name || 'Belum ditentukan'}
+                      </p>
                     </TableCell>
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden md:table-cell text-xs tabular-nums whitespace-nowrap">
                       {tx.item_count} SKU ({tx.total_quantity} unit)
                     </TableCell>
-                    <TableCell className="text-xs text-slate-700">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-700">
                       {tx.created_by_name}
                     </TableCell>
-                    <TableCell className="text-xs">
+                    <TableCell className="hidden md:table-cell text-xs">
                       {tx.recipient_name ? (
                         <div>
                           <p className="font-semibold text-slate-900">
@@ -329,7 +333,7 @@ export default function OutgoingManager({
                     <TableCell>
                       <StatusPill status={tx.status} />
                     </TableCell>
-                    <TableCell className="text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs text-slate-600 tabular-nums whitespace-nowrap">
                       <div>
                         <p className="font-medium text-slate-800">
                           {tx.shipment_date
@@ -464,7 +468,7 @@ export default function OutgoingManager({
                           : 'border-slate-200 bg-[#F4F5F8]'
                       }`}
                     >
-                      <div className="grid grid-cols-1 sm:grid-cols-[1fr_100px_auto] gap-2 items-center">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[1fr_100px_auto] gap-2 sm:items-center">
                         <SearchableProductSelect
                           value={row.productId}
                           onChange={(val) => {
@@ -496,35 +500,37 @@ export default function OutgoingManager({
                           }
                         />
 
-                        <input
-                          type="number"
-                          min="1"
-                          max={check.prod ? check.prod.stock : undefined}
-                          step="1"
-                          required
-                          aria-label={`Jumlah baris ${idx + 1}`}
-                          value={row.quantity}
-                          onChange={(e) => {
-                            const val = e.target.value;
-                            setItems((prev) =>
-                              prev.map((it, i) =>
-                                i === idx ? { ...it, quantity: val } : it
-                              )
-                            );
-                          }}
-                          className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm tabular-nums focus:border-[#3243DD] focus:outline-none"
-                        />
+                        <div className="flex items-center gap-2 sm:contents">
+                          <input
+                            type="number"
+                            min="1"
+                            max={check.prod ? check.prod.stock : undefined}
+                            step="1"
+                            required
+                            aria-label={`Jumlah baris ${idx + 1}`}
+                            value={row.quantity}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setItems((prev) =>
+                                prev.map((it, i) =>
+                                  i === idx ? { ...it, quantity: val } : it
+                                )
+                              );
+                            }}
+                            className="flex-1 min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm tabular-nums focus:border-[#3243DD] focus:outline-none"
+                          />
 
-                        {items.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeRow(idx)}
-                            className="rounded-lg p-2 text-red-600 hover:bg-red-100 cursor-pointer"
-                            aria-label="Hapus baris item"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        )}
+                          {items.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removeRow(idx)}
+                              className="min-h-[40px] min-w-[40px] inline-flex items-center justify-center rounded-lg p-2 text-red-600 hover:bg-red-100 cursor-pointer shrink-0"
+                              aria-label="Hapus baris item"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
+                        </div>
                       </div>
 
                       {check.prod && !hasRowError && (

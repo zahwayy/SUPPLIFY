@@ -223,10 +223,10 @@ export default function DiscrepanciesManager({
             <TableHeader>
               <TableRow>
                 <TableHead>Kode Issue</TableHead>
-                <TableHead>Jenis &amp; Sumber</TableHead>
-                <TableHead>Produk</TableHead>
-                <TableHead>Selisih</TableHead>
-                <TableHead>Pelapor</TableHead>
+                <TableHead className="hidden md:table-cell">Jenis &amp; Sumber</TableHead>
+                <TableHead className="hidden sm:table-cell">Produk</TableHead>
+                <TableHead className="hidden lg:table-cell">Selisih</TableHead>
+                <TableHead className="hidden lg:table-cell">Pelapor</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Aksi</TableHead>
               </TableRow>
@@ -260,8 +260,17 @@ export default function DiscrepanciesManager({
                       >
                         {row.issue_code}
                       </Link>
+                      <p className="mt-0.5 font-sans text-[11px] font-medium text-slate-700 whitespace-normal sm:hidden">
+                        {row.product_name}
+                      </p>
+                      <p className="mt-0.5 font-sans text-[11px] font-normal text-slate-500 md:hidden">
+                        {issueMeta.label}
+                        {row.difference !== null
+                          ? ` • ${row.difference > 0 ? `+${row.difference}` : row.difference} ${row.unit || ''}`
+                          : ''}
+                      </p>
                     </TableCell>
-                    <TableCell className="text-xs">
+                    <TableCell className="hidden md:table-cell text-xs">
                       <Badge tone={issueMeta.tone}>{issueMeta.label}</Badge>
                       <p className="mt-1 text-slate-500">
                         {sourceHref ? (
@@ -297,7 +306,7 @@ export default function DiscrepanciesManager({
                         </p>
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden sm:table-cell">
                       <Link
                         href={`/products/${row.product_id}`}
                         className="font-semibold text-slate-900 hover:text-[#3243DD]"
@@ -313,7 +322,7 @@ export default function DiscrepanciesManager({
                         ) : null}
                       </p>
                     </TableCell>
-                    <TableCell className="text-xs tabular-nums whitespace-nowrap">
+                    <TableCell className="hidden lg:table-cell text-xs tabular-nums whitespace-nowrap">
                       {row.difference !== null ? (
                         <span
                           className={`font-bold ${
@@ -333,7 +342,7 @@ export default function DiscrepanciesManager({
                         <span className="text-slate-400">—</span>
                       )}
                     </TableCell>
-                    <TableCell className="text-xs">
+                    <TableCell className="hidden lg:table-cell text-xs">
                       <p className="text-slate-800">{row.reported_by_name}</p>
                       <p className="text-[11px] text-slate-500 tabular-nums">
                         {formatDateTime(row.reported_at)}
